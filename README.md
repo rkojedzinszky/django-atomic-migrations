@@ -19,3 +19,9 @@ INSTALLED_APPS = [
 	...
 ]
 ```
+
+If your project's database already exists, you should run
+```bash
+$ python manage.py add-migrations-constraint
+```
+to create the missing unique constraint.
