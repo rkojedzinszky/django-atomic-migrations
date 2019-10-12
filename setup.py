@@ -5,7 +5,7 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
     name="django-atomic-migrations",
-    version="0.1.0",
+    version="0.1.2",
     author="Richard Kojedzinszky",
     author_email="richard@kojedz.in",
     description="Wraps migration step runs in transactions in Django",
