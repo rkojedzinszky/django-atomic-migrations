@@ -27,5 +27,11 @@ def _monkey_patch():
 class AtomicMigrations(AppConfig):
     name = "django_atomic_migrations"
 
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self._patched = False
+
     def ready(self) -> None:
-        _monkey_patch()
+        if not self._patched:
+            _monkey_patch()
+            self._patched = True
