@@ -1,0 +1,24 @@
+kind: pipeline
+name: default
+
+platform:
+  os: linux
+  arch: arm
+
+steps:
+- name: test
+  image: python:3.7-alpine
+  pull: true
+  commands:
+  - apk --no-cache add postgresql-dev gcc libc-dev postgresql-client
+  - pip install -r test/requirements.txt
+  - python test/manage.py migrate damt 0002
+  - sh -c "python test/manage.py migrate damt & python test/manage.py migrate damt ; true"
+  - sh -c "test $(psql -tA postgresql://damt:damt@postgres:5432/damt?sslmode=disable -c 'select value from damt_testmodel') -eq 2"
+
+services:
+- name: postgres
+  image: postgres
+  environment:
+    POSTGRES_USER: damt
+    POSTGRES_PASSWORD: damt
