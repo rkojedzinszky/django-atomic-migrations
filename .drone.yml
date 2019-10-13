@@ -10,20 +10,23 @@ steps:
   image: python:3.7-alpine
   pull: true
   commands:
-  - apk --no-cache add postgresql-dev gcc libc-dev postgresql-client git
+  - apk --no-cache add postgresql-dev gcc libc-dev postgresql-client
   - pip install -r test/requirements.txt
   - python test/manage.py migrate damt 0002
   - sh -c "python test/manage.py migrate damt & python test/manage.py migrate damt ; true"
   - sh -c "test $(psql -tA postgresql://damt:damt@postgres:5432/damt?sslmode=disable -c 'select value from damt_testmodel') -eq 2"
 
 - name: publish
-  image: plugins/pypi
-  settings:
-    username: rkojedzinszky
-    password:
+  image: python:3.7-alpine
+  commands:
+  - apk --no-cache add git
+  - pip install -U setuptools twine
+  - python setup.py sdist
+  - sh -c "python -m twine upload dist/*"
+  environment:
+    TWINE_USERNAME: rkojedzinszky
+    TWINE_PASSWORD:
       from_secret: pypi_password
-    distributions:
-    - sdist
   when:
     event:
     - tag
