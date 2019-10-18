@@ -1,12 +1,11 @@
 import setuptools
-import subprocess
 
 with open("README.md", "r") as fh:
     long_description = fh.read()
 
 setuptools.setup(
     name="django-atomic-migrations",
-    version=subprocess.check_output(['git', 'describe', '--tags']).decode().strip(),
+    version='0.1.4',
     author="Richard Kojedzinszky",
     author_email="richard@kojedz.in",
     description="Wraps migration step runs in transactions in Django",

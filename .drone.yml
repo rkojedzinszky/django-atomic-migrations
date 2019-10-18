@@ -19,8 +19,7 @@ steps:
 - name: publish
   image: alpine:3.10
   commands:
-  - apk --no-cache add python3 git
-  - git fetch --tags
+  - apk --no-cache add python3
   - pip3 install twine
   - python3 setup.py sdist
   - python3 -m twine upload dist/*
