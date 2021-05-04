@@ -3,23 +3,23 @@ name: default
 
 platform:
   os: linux
-  arch: arm
+  arch: arm64
 
 steps:
 - name: test
-  image: alpine:3.10
+  image: alpine:3.13
   pull: true
   commands:
-  - apk --no-cache add python3 py3-psycopg2 postgresql-client
-  - pip3 install -U pip -r test/requirements.txt
+  - apk --no-cache add python3 py3-pip py3-psycopg2 postgresql-client
+  - pip3 install -r test/requirements.txt
   - python3 test/manage.py migrate damt 0002
   - sh -c "python3 test/manage.py migrate damt & python3 test/manage.py migrate damt ; true"
   - sh -c "test $(psql -tA postgresql://damt:damt@postgres:5432/damt?sslmode=disable -c 'select value from damt_testmodel') -eq 2"
 
 - name: publish
-  image: alpine:3.10
+  image: alpine:3.13
   commands:
-  - apk --no-cache add python3
+  - apk --no-cache add python3 py3-pip
   - pip3 install twine
   - python3 setup.py sdist
   - python3 -m twine upload dist/*
