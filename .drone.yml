@@ -19,10 +19,10 @@ steps:
 - name: publish
   image: alpine:3.13
   commands:
-  - apk --no-cache add python3 py3-pip
-  - pip3 install twine
+  - apk --no-cache add python3 py3-pip py3-twine py3-colorama
+  - pip3 install rfc3986
   - python3 setup.py sdist
-  - python3 -m twine upload dist/*
+  - twine upload dist/*
   environment:
     TWINE_USERNAME: rkojedzinszky
     TWINE_PASSWORD:
