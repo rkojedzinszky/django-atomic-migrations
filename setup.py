@@ -5,10 +5,10 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
     name="django-atomic-migrations",
-    version='0.1.7',
+    version='0.2.0',
     author="Richard Kojedzinszky",
     author_email="richard@kojedz.in",
-    description="Wraps migration step runs in transactions in Django",
+    description="Adds unique constraint on Django's migration tracking model",
     long_description=long_description,
     long_description_content_type="text/markdown",
     url="https://github.com/rkojedzinszky/django-atomic-migrations",
