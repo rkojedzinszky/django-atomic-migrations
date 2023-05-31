@@ -1,9 +1,9 @@
 kind: pipeline
 name: default
+type: kubernetes
 
-platform:
-  os: linux
-  arch: arm64
+node_selector:
+  kubernetes.io/arch: arm64
 
 steps:
 - name: test
