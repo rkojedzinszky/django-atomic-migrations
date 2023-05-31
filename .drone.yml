@@ -24,7 +24,7 @@ steps:
   - python3 setup.py sdist
   - twine upload dist/*
   environment:
-    TWINE_USERNAME: rkojedzinszky
+    TWINE_USERNAME: __token__
     TWINE_PASSWORD:
       from_secret: pypi_password
   when:
