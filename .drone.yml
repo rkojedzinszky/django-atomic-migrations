@@ -7,7 +7,7 @@ node_selector:
 
 steps:
 - name: test
-  image: alpine:3.13
+  image: alpine:3.18
   pull: true
   commands:
   - apk --no-cache add python3 py3-pip py3-psycopg2 postgresql-client
@@ -17,7 +17,7 @@ steps:
   - sh -c "test $(psql -tA postgresql://damt:damt@postgres:5432/damt?sslmode=disable -c 'select value from damt_testmodel') -eq 2"
 
 - name: publish
-  image: alpine:3.13
+  image: alpine:3.18
   commands:
   - apk --no-cache add python3 py3-pip py3-twine py3-colorama
   - pip3 install rfc3986
