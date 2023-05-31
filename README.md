@@ -3,9 +3,7 @@
 [![Build Status](https://drone.srv.kojedz.in/api/badges/krichy/django-atomic-migrations/status.svg)](https://drone.srv.kojedz.in/krichy/django-atomic-migrations)
 
 This small package ensures that Django's migration tracking model has an
-unique index for applied migrations, and also ensures that migrations
-steps are applied in transactions. This is known to work with
-PostgreSQL.
+unique index for applied migrations.
 
 ## Usage
 
