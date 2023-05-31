@@ -5,6 +5,8 @@
 This small package ensures that Django's migration tracking model has an
 unique index for applied migrations.
 
+[Django ticket](https://code.djangoproject.com/ticket/34610)
+
 ## Usage
 
 Install the package:
